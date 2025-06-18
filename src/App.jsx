@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import FlashcardList from "./components/FlashcardList";
+import CardInfo from "./components/CardInfo";
+import flashcards from "./data/flashcards";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredCards = 
+    selectedCategory === "All" 
+      ? flashcards 
+      : flashcards.filter((card) => card.category === selectedCategory);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <CardInfo title="Geoography Trivia" description="Test your world knowledge with fun geography facts!" total={filteredCards.length} />
+      <div className="filter-container">
+        <label htmlFor="category">Filter by Difficulty: </label>
+        <select
+          id="category"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="All">ALL</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <FlashcardList cards={filteredCards} />
+    </div>
+  );
 }
-
-export default App
