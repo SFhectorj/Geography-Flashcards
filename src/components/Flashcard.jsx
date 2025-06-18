@@ -5,15 +5,15 @@ export default function Flashcard({ card }) {
 
     const getCategoryColor = (category) => {
         switch (category) {
-            case "Easy": return "#d4edda";
-            case "Medium": return "#fff3cd";
-            case "Hard": return "#f8d7da";
+            case "Easy": return "#486856";
+            case "Medium": return "#BA8E23";
+            case "Hard": return "#660000";
             default: return "#ffffff";
         }
     };
 
-    return (
-        <div className="flip-card" onClick={() => setFlipped(!flipped)}>
+  return (
+    <div className="flip-card" onClick={() => setFlipped(!flipped)}>
       <div
         className={`flashcard-inner ${flipped ? 'flipped' : ''}`}
       >

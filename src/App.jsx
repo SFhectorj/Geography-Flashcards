@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <CardInfo title="Geoography Trivia" description="Test your world knowledge with fun geography facts!" total={filteredCards.length} />
+      <CardInfo title="Geography Trivia" description="Test your world knowledge with fun geography facts!" total={filteredCards.length} />
       <div className="filter-container">
         <label htmlFor="category">Filter by Difficulty: </label>
         <select
