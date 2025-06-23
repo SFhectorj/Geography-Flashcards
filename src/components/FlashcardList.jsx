@@ -8,13 +8,26 @@ export default function FlashcardList({ cards }) {
         const randomIndex = Math.floor(Math.random() * cards.length);
         setCurrentIndex(randomIndex);
     };
+    
+    const handlePrevious = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    };
 
     return (
         <div className="flashcard-list">
             {cards.length > 0 ? (
                 <>
                 <Flashcard card={cards[currentIndex]} />
-                <button className="next-button" onClick={showRandomCard}>Next</button>
+                <div className="navigation-buttons">
+                    <button className="prev-button" onClick={handlePrevious} disabled={currentIndex === cards.length - 1}>
+                        Previous
+                    </button>
+                    <button className="next-button" onClick={handleNext} disabled={currentIndex === cards.length - 1}>
+                        Next
+                    </button>
+                </div>
                 </>
             ) : (
                 <p>No cards available in this category</p>
