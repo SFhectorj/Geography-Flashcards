@@ -77,3 +77,11 @@
 .next-button:hover {
   background-color: #0056b3;
 }
+
+.prev-button.disabled,
+.next-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #cccccc;
+  color: #666666;
+}

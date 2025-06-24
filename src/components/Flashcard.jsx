@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Flashcard({ card }) {
     const [flipped, setFlipped] = useState(false);
     const [userGuess, setUserGuess] = useState("");
     const [isCorrect, setIsCorrect] = useState(null);
+
+    useEffect(() => {
+      setFlipped(false);
+      setUserGuess("");
+      setIsCorrect(null);
+    }, [card]);
 
     const handleSubmit = () => {
       if (userGuess.trim().toLowerCase() === card.answer.toLowerCase()) {
@@ -27,10 +33,7 @@ export default function Flashcard({ card }) {
     <div className="flip-card">
       <div className="flashcard-wrapper">
         <div className={`flashcard-inner ${flipped ? 'flipped' : ''}`}>
-          <div
-            className="flashcard front"
-            style={{ backgroundColor: getCategoryColor(card.category) }}
-          >
+          <div className="flashcard front" style={{ backgroundColor: getCategoryColor(card.category) }}>
             {card.image && <img src={card.image} alt="card visual" className="card-image" />}
             <p>{card.question}</p>
             <input
@@ -43,10 +46,7 @@ export default function Flashcard({ card }) {
             <button className="submit-button" onClick={handleSubmit}>Submit</button>
             {isCorrect === false && <p className="feedback incorrect">Incorrect. Try again!</p>}
           </div>
-          <div
-            className="flashcard back"
-            style={{ backgroundColor: getCategoryColor(card.category) }}
-          >
+          <div className="flashcard back" style={{ backgroundColor: getCategoryColor(card.category) }}>
             {card.image && <img src={card.image} alt="card visual" className="card-image" />}
             <p>{card.answer}</p>
             {isCorrect && <p className="feedback correct">Correct!</p>}
