@@ -4,9 +4,10 @@ import Flashcard from "./Flashcard";
 export default function FlashcardList({ cards }) {
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const showRandomCard = () => {
-        const randomIndex = Math.floor(Math.random() * cards.length);
-        setCurrentIndex(randomIndex);
+    const handleNext = () => {
+        if (currentIndex < cards.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        }
     };
     
     const handlePrevious = () => {
