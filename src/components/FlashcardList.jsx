@@ -21,7 +21,7 @@ export default function FlashcardList({ cards }) {
                 <>
                 <Flashcard card={cards[currentIndex]} />
                 <div className="navigation-buttons">
-                    <button className="prev-button" onClick={handlePrevious} disabled={currentIndex === cards.length - 1}>
+                    <button className="prev-button" onClick={handlePrevious} disabled={currentIndex === 0}>
                         Previous
                     </button>
                     <button className="next-button" onClick={handleNext} disabled={currentIndex === cards.length - 1}>
